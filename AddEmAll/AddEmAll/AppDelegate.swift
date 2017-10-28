@@ -7,16 +7,41 @@
 //
 
 import UIKit
+import TwitterKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var consumer_key: String = ""
+    var consumer_secret: String = ""
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        if let url = Bundle.main.url(forResource:"Twitter", withExtension: "plist") {
+            do {
+                let data = try Data(contentsOf:url)
+                let swiftDictionary = try PropertyListSerialization.propertyList(from: data, options: [], format: nil) as! [String:Any]
+                consumer_key = swiftDictionary["consumer_key"] as! String
+                consumer_secret = swiftDictionary["consumer_secret"] as! String
+            } catch {
+                print(error)
+            }
+        }
+        
+        // Intialize Twitter Kit
+        Twitter.sharedInstance().start(withConsumerKey:consumer_key, consumerSecret:consumer_secret)
+        
         return true
+    }
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        if Twitter.sharedInstance().application(app, open: url, options: options) {
+            return true
+        }
+        
+        return false
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

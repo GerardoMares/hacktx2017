@@ -12,6 +12,8 @@
 		0D0E05861FA4FE3000B5FD4E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0D0E05841FA4FE3000B5FD4E /* Main.storyboard */; };
 		0D0E05881FA4FE3000B5FD4E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0D0E05871FA4FE3000B5FD4E /* Assets.xcassets */; };
 		0D0E058B1FA4FE3000B5FD4E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0D0E05891FA4FE3000B5FD4E /* LaunchScreen.storyboard */; };
+		0D0E05941FA5241A00B5FD4E /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D0E05931FA523F000B5FD4E /* SafariServices.framework */; };
+		0D0E05961FA5275900B5FD4E /* Twitter.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0D0E05951FA5275900B5FD4E /* Twitter.plist */; };
 		32BF4D6EF25276223F0DD7AA /* Pods_AddEmAll.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2510D90B8C4462D6EB7BFE2 /* Pods_AddEmAll.framework */; };
 /* End PBXBuildFile section */
 
@@ -23,6 +25,9 @@
 		0D0E05871FA4FE3000B5FD4E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0D0E058A1FA4FE3000B5FD4E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0D0E058C1FA4FE3000B5FD4E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0D0E05921FA51CA300B5FD4E /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
+		0D0E05931FA523F000B5FD4E /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
+		0D0E05951FA5275900B5FD4E /* Twitter.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Twitter.plist; sourceTree = "<group>"; };
 		5703CE5E1BB0DF12629F3388 /* Pods-AddEmAll.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AddEmAll.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AddEmAll/Pods-AddEmAll.debug.xcconfig"; sourceTree = "<group>"; };
 		A2074B4F8C1CB2588A7B93AF /* Pods-AddEmAll.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AddEmAll.release.xcconfig"; path = "Pods/Target Support Files/Pods-AddEmAll/Pods-AddEmAll.release.xcconfig"; sourceTree = "<group>"; };
 		A2510D90B8C4462D6EB7BFE2 /* Pods_AddEmAll.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AddEmAll.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -33,6 +38,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D0E05941FA5241A00B5FD4E /* SafariServices.framework in Frameworks */,
 				32BF4D6EF25276223F0DD7AA /* Pods_AddEmAll.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -62,6 +68,8 @@
 			isa = PBXGroup;
 			children = (
 				0D0E05801FA4FE3000B5FD4E /* AppDelegate.swift */,
+				0D0E05951FA5275900B5FD4E /* Twitter.plist */,
+				0D0E05921FA51CA300B5FD4E /* Header.h */,
 				0D0E05821FA4FE3000B5FD4E /* ViewController.swift */,
 				0D0E05841FA4FE3000B5FD4E /* Main.storyboard */,
 				0D0E05871FA4FE3000B5FD4E /* Assets.xcassets */,
@@ -74,6 +82,7 @@
 		3C3D286A3CDD0D1FF967FB11 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0D0E05931FA523F000B5FD4E /* SafariServices.framework */,
 				A2510D90B8C4462D6EB7BFE2 /* Pods_AddEmAll.framework */,
 			);
 			name = Frameworks;
@@ -152,6 +161,7 @@
 			files = (
 				0D0E058B1FA4FE3000B5FD4E /* LaunchScreen.storyboard in Resources */,
 				0D0E05881FA4FE3000B5FD4E /* Assets.xcassets in Resources */,
+				0D0E05961FA5275900B5FD4E /* Twitter.plist in Resources */,
 				0D0E05861FA4FE3000B5FD4E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
