@@ -8,6 +8,7 @@
 
 import UIKit
 import TwitterKit
+import Foundation
 
 class ViewController: UIViewController {
 
@@ -17,20 +18,22 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        self.label.text = "Not logged in";
-    
-        let logInButton = TWTRLogInButton(logInCompletion: { session, error in
-            if (session != nil) {
-                self.label.text = "Logged in as \(session!.userName)";
-                self.follow();
-                
-            } else {
-                print("error: \(String(describing: error?.localizedDescription))");
-            }
-        })
-        logInButton.center = self.view.center
-        self.view.addSubview(logInButton)
-        
+//        self.label.text = "Not logged in";
+//
+//        let logInButton = TWTRLogInButton(logInCompletion: { session, error in
+//            if (session != nil) {
+//                self.label.text = "Logged in as \(session!.userName)";
+//                self.follow();
+//
+//            } else {
+//                print("error: \(String(describing: error?.localizedDescription))");
+//            }
+//        })
+//        logInButton.center = self.view.center
+//        self.view.addSubview(logInButton)
+
+        downloadItems(id:"1")
+        downloadItems(id:"2")
     
     }
     
@@ -48,7 +51,7 @@ class ViewController: UIViewController {
             
             client.sendTwitterRequest(request) { (response, data, connectionError) -> Void in
                 if connectionError != nil {
-                    print("Error: \(connectionError)")
+//                    print("Error: \(connectionError)")
                 }
                 
                 do {
@@ -61,6 +64,44 @@ class ViewController: UIViewController {
             }
         }
         
+    }
+    
+    
+    func downloadItems(id: String) {
+        let urlPath = "http://172.25.253.52:8888/add/add.php?id="
+        
+        let url: URL = URL(string: urlPath + id)!
+        let defaultSession = Foundation.URLSession(configuration: URLSessionConfiguration.default)
+        
+        let task = defaultSession.dataTask(with: url) { (data, response, error) in
+            
+            if error != nil {
+                print("Failed to download data")
+            } else {
+                
+                do {
+                    if let data = data {
+                        let json = try JSONSerialization.jsonObject(with: data) as? [String: Any]
+//
+//                        if let userid = json!["Id"] as! String
+//                        let name = json!["Name"] as! String
+//                        let tw = json!["Twitter"] as! String
+//                        let fb = json!["Facebook"] as! String
+//                        let sc = json!["Snapchat"] as! String
+//                        let ig = json!["Instagram"] as! String
+                    
+                        print(json)
+                    
+                    
+                    }
+                } catch {
+                    print("Error deserializing JSON: \(error)")
+                }
+            }
+            
+        }
+        
+        task.resume()
     }
 
     override func didReceiveMemoryWarning() {
