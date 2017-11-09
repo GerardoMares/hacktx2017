@@ -45,10 +45,10 @@ class DbOperation
         $user = array();
         $user['name'] = $name;
         $user['email'] = $email;
-        $user['fb'] = $fb;
-        $user['tw'] = $fb;
-        $user['ig'] = $fb;
-        $user['sc'] = $fb;
+        $user['Facebook'] = $fb;
+        $user['Twitter'] = $tw;
+        $user['Instagram'] = $ig;
+        $user['Snapchat'] = $sc;
 
         return $user;
     }
@@ -93,5 +93,23 @@ class DbOperation
         }
 
     }
+
+    public function getAccount($email, $account) {
+        if ($this->isUserExist($email)) {
+
+            $user = $this->getUserByEmail($email);
+
+            // $user = array();
+            // $user['Twitter'] = "BigPackageDylan";
+
+            return $user[$account];
+
+
+        } else {
+            return NOTOK;
+        }
+    }
+
+
 }
 ?>

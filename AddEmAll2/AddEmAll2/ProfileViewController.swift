@@ -14,12 +14,25 @@ import Alamofire
 class ProfileViewController: UIViewController {
     let defaultValues = UserDefaults.standard
     
-    let URL_ADD_Account = "http://172.25.253.52:8888/v1/addAccount.php"
+    @IBOutlet weak var imageView: UIImageView!
+//
+    let URL_ADD_Account = "http://ec2-18-216-72-146.us-east-2.compute.amazonaws.com/v1/addAccount.php"
+    let URL_GET_Twitter = "http://ec2-18-216-72-146.us-east-2.compute.amazonaws.com/v1/getAccount.php"
     
-    //label again don't copy instead connect
+//    let URL_ADD_Account = "http://172.25.253.52:8888/v1/addAccount.php"
+//    let URL_GET_Twitter = "http://172.25.253.52:8888/v1/getAccount.php"
+    
+
     @IBOutlet weak var labelUserName: UILabel!
+    @IBOutlet weak var newFriend: UITextField!
     
-    //button
+    
+    @IBAction func submitNewFriend(_ sender: UIButton) {
+        if (newFriend.hasText) {
+            getTwitter(email: newFriend.text!)
+        }
+    }
+    
     @IBAction func buttonLogout(_ sender: UIButton) {
         
         //removing values from default
@@ -35,35 +48,28 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //hiding back button
         let backButton = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: navigationController, action: nil)
         navigationItem.leftBarButtonItem = backButton
         
-        //getting user data from defaults
         let defaultValues = UserDefaults.standard
         if let name = defaultValues.string(forKey: "username"){
-            //setting the name to label 
             labelUserName.text = name
             
-        }else{
+        } else{
             //send back to login view controller
         }
-        
-        
+    
         
         let email = defaultValues.string(forKey: "useremail")
+        let image = generateQRCode(from: email!)
         
-        labelUserName.text = email
+        imageView.image = image
         
         if(email != nil) {
             let logInButton = TWTRLogInButton(logInCompletion: { session, error in
                 
                 if (session != nil) {
-
-                        print("EMAIL")
-                        print(email)
-//                    self.addAccount(email: email!, account: "Twitter", value: (session?.userName)!)
-
+                    self.addAccount(email: email!, account: "Twitter", value: (session?.userName)!)
 
                 } else {
 
@@ -74,11 +80,7 @@ class ProfileViewController: UIViewController {
             logInButton.center = self.view.center
             self.view.addSubview(logInButton)
         }
-        
-        
-        
-        
-        
+
     }
     
     override func didReceiveMemoryWarning() {
@@ -88,30 +90,97 @@ class ProfileViewController: UIViewController {
     
     func addAccount(email: String, account : String, value : String) {
         
-        //creating parameters for the post request
         let parameters: Parameters=[
             "email": email,
             "account": account,
             "value" : value
         ]
         
-        //Sending http post request
-        Alamofire.request(URL_ADD_Account, method: .post, parameters: parameters).responseJSON
-            {
+        Alamofire.request(URL_ADD_Account, method: .post, parameters: parameters).responseJSON {
                 response in
-                //printing response
+            
                 print(response)
                 
-                //getting the json value from the server
+            
                 if let result = response.result.value {
                     
-                    //converting it as NSDictionary
                     let jsonData = result as! NSDictionary
                     
-                    //displaying the message in label
                     self.labelUserName.text = jsonData.value(forKey: "message") as! String?
                 }
         }
+    }
+    
+    func getTwitter(email: String) {
+        
+        let parameters: Parameters=[
+            "email": email,
+            "account": "Twitter"
+        ]
+        
+        Alamofire.request(URL_GET_Twitter, method: .post, parameters: parameters).responseJSON {
+            response in
+            
+            print(response)
+            
+            if let result = response.result.value {
+                
+                let jsonData = result as! NSDictionary
+                print(jsonData)
+                
+                let twitterName = jsonData.value(forKey: "account") as! String?
+                
+                self.follow(user: twitterName!);
+            }
+        }
+    }
+    
+    func follow(user: String) {
+        let store = Twitter.sharedInstance().sessionStore
+        
+        if let userid = store.session()?.userID {
+            
+            let client = TWTRAPIClient(userID: userid)
+            
+            let followEndpoint = "https://api.twitter.com/1.1/friendships/create.json"
+            let params = ["screen_name" : user, "follow" : "true"]
+            var clientError : NSError?
+            
+            let request = client.urlRequest(withMethod: "POST", url: followEndpoint, parameters: params, error: &clientError)
+            
+            client.sendTwitterRequest(request) { (response, data, connectionError) -> Void in
+                if connectionError != nil {
+                    print("Error: connection")
+                }
+                
+                do {
+                    
+                    let json = try JSONSerialization.jsonObject(with: data!, options: [])
+                    
+                    print("json: \(json)")
+                    self.labelUserName.text = "Followed User";
+                    
+                } catch let jsonError as NSError {
+                    print("json error: \(jsonError.localizedDescription)")
+                }
+            }
+        }
+        
+    }
+    
+    func generateQRCode(from string: String) -> UIImage? {
+        let data = string.data(using: String.Encoding.ascii)
+        
+        if let filter = CIFilter(name: "CIQRCodeGenerator") {
+            filter.setValue(data, forKey: "inputMessage")
+            let transform = CGAffineTransform(scaleX: 3, y: 3)
+            
+            if let output = filter.outputImage?.transformed(by: transform) {
+                return UIImage(ciImage: output)
+            }
+        }
+        
+        return nil
     }
     
     
