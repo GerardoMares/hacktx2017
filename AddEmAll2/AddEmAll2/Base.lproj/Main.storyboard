@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="FDl-Nb-84W">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13770" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="FDl-Nb-84W">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13770"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -126,6 +126,16 @@
                                     <action selector="buttonLogout:" destination="1j7-Xs-qb4" eventType="touchUpInside" id="gOi-xB-fCE"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gLN-Bm-Ege">
+                                <rect key="frame" x="93" y="401" width="189" height="38"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" red="0.99215686270000003" green="0.81568627449999997" blue="0.3803921569" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" image="focus"/>
+                                <connections>
+                                    <action selector="unwindtoHomeScreen:forEvent:" destination="1j7-Xs-qb4" eventType="touchUpInside" id="9Iw-6T-WVG"/>
+                                    <segue destination="7Bd-Ec-mCh" kind="presentation" id="xxi-OE-ZZH"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <viewLayoutGuide key="safeArea" id="3fh-6w-3Q2"/>
@@ -139,6 +149,76 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="giY-xJ-JzY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1556" y="137.18140929535232"/>
+        </scene>
+        <!--Scanner Controller-->
+        <scene sceneID="ZW7-uk-mko">
+            <objects>
+                <viewController id="7Bd-Ec-mCh" customClass="QRScannerController" customModule="AddEmAll2" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="orK-ih-dLY">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view alpha="0.80000001192092896" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="caA-Ef-Gze">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="55"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Scan" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EIu-fL-UI6">
+                                        <rect key="frame" x="165.5" y="23" width="44" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fYY-ge-d5T">
+                                        <rect key="frame" x="15" y="24" width="18" height="18"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="18" id="1Vg-Ul-PkH"/>
+                                        </constraints>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <state key="normal" image="cross"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uZv-In-96J">
+                                        <rect key="frame" x="15" y="23" width="18" height="19"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="18" id="qOR-wz-vdE"/>
+                                        </constraints>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <state key="normal" image="cross"/>
+                                        <connections>
+                                            <segue destination="1j7-Xs-qb4" kind="presentation" id="lne-Op-FhE"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="EIu-fL-UI6" firstAttribute="centerX" secondItem="caA-Ef-Gze" secondAttribute="centerX" id="0g7-ZK-SsE"/>
+                                    <constraint firstAttribute="bottom" secondItem="EIu-fL-UI6" secondAttribute="bottom" constant="8" id="9tE-BZ-3nr"/>
+                                    <constraint firstAttribute="height" constant="55" id="Rfn-La-WXx"/>
+                                    <constraint firstAttribute="bottom" secondItem="fYY-ge-d5T" secondAttribute="bottom" constant="13" id="aOa-Bs-tk3"/>
+                                    <constraint firstItem="fYY-ge-d5T" firstAttribute="leading" secondItem="caA-Ef-Gze" secondAttribute="leading" constant="15" id="nd6-FB-KJK"/>
+                                    <constraint firstItem="fYY-ge-d5T" firstAttribute="top" secondItem="caA-Ef-Gze" secondAttribute="top" constant="24" id="sKw-BF-5Df"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.60000002384185791" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="No QR code is detected" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cog-6m-0pL">
+                                <rect key="frame" x="0.0" y="627" width="375" height="40"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="osS-bL-AeJ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <viewLayoutGuide key="safeArea" id="k5V-eW-Y4q"/>
+                    </view>
+                    <connections>
+                        <outlet property="messageLabel" destination="cog-6m-0pL" id="pEI-6T-t16"/>
+                        <outlet property="topbar" destination="caA-Ef-Gze" id="oQS-a3-sWF"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oRk-ZG-dNQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2391" y="133"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="pJT-Pd-fQG">
@@ -159,4 +239,11 @@
             <point key="canvasLocation" x="136" y="133.13343328335833"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="cross" width="16" height="16"/>
+        <image name="focus" width="16" height="16"/>
+    </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="xxi-OE-ZZH"/>
+    </inferredMetricsTieBreakers>
 </document>

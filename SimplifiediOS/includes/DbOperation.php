@@ -14,7 +14,7 @@ class DbOperation
         $this->conn = $db->connect();
     }
 
-       /*
+    /*
      * This method is added
      * We are taking username and password
      * and then verifying it from the database
@@ -80,7 +80,8 @@ class DbOperation
         return $stmt->num_rows > 0;
     }
 
-    public function updateAccount($email, $account, $value) {
+    public function updateAccount($email, $account, $value) 
+    {
         if (!$this->isUserExist($email)) {
             $stmt = $this->conn->prepare("UPDATE Users SET $account = '$value' WHERE Email = '$email'");
             if ($stmt->execute()) {
@@ -94,7 +95,8 @@ class DbOperation
 
     }
 
-    public function getAccount($email, $account) {
+    public function getAccount($email, $account) 
+    {
         if ($this->isUserExist($email)) {
 
             $user = $this->getUserByEmail($email);

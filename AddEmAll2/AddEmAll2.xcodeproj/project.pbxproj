@@ -15,6 +15,7 @@
 		0D0E05B61FA59C9800B5FD4E /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D0E05B51FA59C8E00B5FD4E /* SafariServices.framework */; };
 		0D0E05B91FA5A66700B5FD4E /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D0E05B81FA5A66700B5FD4E /* ProfileViewController.swift */; };
 		0D0E05BB1FA5B19D00B5FD4E /* Twitter.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0D0E05BA1FA5B19D00B5FD4E /* Twitter.plist */; };
+		0D9E65AB1FBD74A4006FFBD9 /* QRScannerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D9E65AA1FBD74A4006FFBD9 /* QRScannerController.swift */; };
 		DBDAF89A053D0903A4394C8C /* Pods_AddEmAll2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 464DC6DF129FC7A8C065FF73 /* Pods_AddEmAll2.framework */; };
 /* End PBXBuildFile section */
 
@@ -30,6 +31,7 @@
 		0D0E05B71FA59DE400B5FD4E /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
 		0D0E05B81FA5A66700B5FD4E /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		0D0E05BA1FA5B19D00B5FD4E /* Twitter.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Twitter.plist; sourceTree = "<group>"; };
+		0D9E65AA1FBD74A4006FFBD9 /* QRScannerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerController.swift; sourceTree = "<group>"; };
 		3B6344FF862428E3DD45F140 /* Pods-AddEmAll2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AddEmAll2.release.xcconfig"; path = "Pods/Target Support Files/Pods-AddEmAll2/Pods-AddEmAll2.release.xcconfig"; sourceTree = "<group>"; };
 		464DC6DF129FC7A8C065FF73 /* Pods_AddEmAll2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AddEmAll2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD5E1E3DB3448E4D50C81177 /* Pods-AddEmAll2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AddEmAll2.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AddEmAll2/Pods-AddEmAll2.debug.xcconfig"; sourceTree = "<group>"; };
@@ -77,6 +79,7 @@
 				0D0E05AF1FA59AEF00B5FD4E /* Info.plist */,
 				0D0E05B71FA59DE400B5FD4E /* Header.h */,
 				0D0E05B81FA5A66700B5FD4E /* ProfileViewController.swift */,
+				0D9E65AA1FBD74A4006FFBD9 /* QRScannerController.swift */,
 				0D0E05BA1FA5B19D00B5FD4E /* Twitter.plist */,
 			);
 			path = AddEmAll2;
@@ -225,6 +228,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0D0E05B91FA5A66700B5FD4E /* ProfileViewController.swift in Sources */,
+				0D9E65AB1FBD74A4006FFBD9 /* QRScannerController.swift in Sources */,
 				0D0E05A61FA59AEF00B5FD4E /* ViewController.swift in Sources */,
 				0D0E05A41FA59AEF00B5FD4E /* AppDelegate.swift in Sources */,
 			);

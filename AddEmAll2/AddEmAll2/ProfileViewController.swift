@@ -15,12 +15,12 @@ class ProfileViewController: UIViewController {
     let defaultValues = UserDefaults.standard
     
     @IBOutlet weak var imageView: UIImageView!
-//
-    let URL_ADD_Account = "http://ec2-18-216-72-146.us-east-2.compute.amazonaws.com/v1/addAccount.php"
-    let URL_GET_Twitter = "http://ec2-18-216-72-146.us-east-2.compute.amazonaws.com/v1/getAccount.php"
+
+//    let URL_ADD_Account = "http://ec2-18-216-72-146.us-east-2.compute.amazonaws.com/v1/addAccount.php"
+//    let URL_GET_Twitter = "http://ec2-18-216-72-146.us-east-2.compute.amazonaws.com/v1/getAccount.php"
     
-//    let URL_ADD_Account = "http://172.25.253.52:8888/v1/addAccount.php"
-//    let URL_GET_Twitter = "http://172.25.253.52:8888/v1/getAccount.php"
+    let URL_ADD_Account = "http://169.254.237.204:8888/v1/addAccount.php"
+    let URL_GET_Twitter = "http://169.254.237.204:8888/v1/getAccount.php"
     
 
     @IBOutlet weak var labelUserName: UILabel!
@@ -52,13 +52,7 @@ class ProfileViewController: UIViewController {
         navigationItem.leftBarButtonItem = backButton
         
         let defaultValues = UserDefaults.standard
-        if let name = defaultValues.string(forKey: "username"){
-            labelUserName.text = name
-            
-        } else{
-            //send back to login view controller
-        }
-    
+        if let name = defaultValues.string(forKey: "username"){ labelUserName.text = name }
         
         let email = defaultValues.string(forKey: "useremail")
         let image = generateQRCode(from: email!)
@@ -72,7 +66,6 @@ class ProfileViewController: UIViewController {
                     self.addAccount(email: email!, account: "Twitter", value: (session?.userName)!)
 
                 } else {
-
                     print("NIL SESSION")
                 }
             })
@@ -90,46 +83,30 @@ class ProfileViewController: UIViewController {
     
     func addAccount(email: String, account : String, value : String) {
         
-        let parameters: Parameters=[
-            "email": email,
-            "account": account,
-            "value" : value
-        ]
+        let parameters: Parameters=["email": email, "account": account, "value" : value]
         
         Alamofire.request(URL_ADD_Account, method: .post, parameters: parameters).responseJSON {
-                response in
+            response in
             
-                print(response)
+            if let result = response.result.value {
                 
-            
-                if let result = response.result.value {
-                    
-                    let jsonData = result as! NSDictionary
-                    
-                    self.labelUserName.text = jsonData.value(forKey: "message") as! String?
-                }
+                let jsonData = result as! NSDictionary
+                self.labelUserName.text = jsonData.value(forKey: "message") as! String?
+            }
         }
     }
     
     func getTwitter(email: String) {
         
-        let parameters: Parameters=[
-            "email": email,
-            "account": "Twitter"
-        ]
+        let parameters: Parameters=[ "email": email, "account": "Twitter"]
         
         Alamofire.request(URL_GET_Twitter, method: .post, parameters: parameters).responseJSON {
             response in
             
-            print(response)
-            
             if let result = response.result.value {
-                
+    
                 let jsonData = result as! NSDictionary
-                print(jsonData)
-                
                 let twitterName = jsonData.value(forKey: "account") as! String?
-                
                 self.follow(user: twitterName!);
             }
         }
@@ -181,6 +158,10 @@ class ProfileViewController: UIViewController {
         }
         
         return nil
+    }
+    
+    @IBAction func unwindToHomeScreen(segue: UIStoryboardSegue) {
+        dismiss(animated: true, completion: nil)
     }
     
     
